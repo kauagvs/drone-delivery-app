@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ITimeData, ITrip } from 'src/app/core/interfaces/delivery.interface';
-import { DeliveryHistoryService } from 'src/app/core/services/delivery-history/delivery-history.service';
-import { DeliveryService } from 'src/app/core/services/delivery/delivery.service';
+import { ITimeData, ITrip } from '@core/interfaces/delivery.interface';
+import { DeliveryHistoryService } from '@core/services/delivery-history/delivery-history.service';
+import { DeliveryService } from '@core/services/delivery/delivery.service';
 
 @Component({
   selector: 'app-delivery-form',

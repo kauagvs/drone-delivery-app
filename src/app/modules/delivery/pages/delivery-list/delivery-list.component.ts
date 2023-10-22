@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ITrip } from 'src/app/core/interfaces/delivery.interface';
-import { DeliveryHistoryService } from 'src/app/core/services/delivery-history/delivery-history.service';
+import { ITrip } from '@core/interfaces/delivery.interface';
+import { DeliveryHistoryService } from '@core/services/delivery-history/delivery-history.service';
 
 @Component({
   selector: 'app-delivery-list',
