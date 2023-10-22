@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ITimeData, Trip } from 'src/app/core/interfaces/delivery.interface';
+import { Router } from '@angular/router';
+import { ITimeData, ITrip } from 'src/app/core/interfaces/delivery.interface';
+import { DeliveryHistoryService } from 'src/app/core/services/delivery-history/delivery-history.service';
 import { DeliveryService } from 'src/app/core/services/delivery/delivery.service';
 
 @Component({
@@ -10,13 +12,17 @@ import { DeliveryService } from 'src/app/core/services/delivery/delivery.service
 export class DeliveryFormComponent implements OnInit {
   public destination = '';
   public fastestPath: string[] = [];
-  public history: Trip[] = [];
+  public history: ITrip[] = [];
   public origin = '';
   public pickup = '';
   public timeData: ITimeData = {};
   public totalTime = 0;
 
-  constructor(private deliveryService: DeliveryService) {}
+  constructor(
+    private deliveryService: DeliveryService,
+    private deliveryHistoryService: DeliveryHistoryService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this._getTimeData();
@@ -71,17 +77,20 @@ export class DeliveryFormComponent implements OnInit {
     );
   }
 
+  public navigateToDeliveryList() {
+    this.router.navigate(['delivery/delivery-list']);
+  }
+
   private _addToHistory(
     origin: string,
     pickup: string,
     destination: string,
     totalTime: number
   ) {
-    const trip: Trip = { origin, pickup, destination, totalTime };
-    this.history.unshift(trip);
-    if (this.history.length > 10) {
-      this.history.pop();
-    }
+    const trip: ITrip = { origin, pickup, destination, totalTime };
+
+    this.deliveryHistoryService.addToHistory(trip);
+    this.history = this.deliveryHistoryService.getHistory().slice(-10);
   }
 
   private _getTimeData(): void {

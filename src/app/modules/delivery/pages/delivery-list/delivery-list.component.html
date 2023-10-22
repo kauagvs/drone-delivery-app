@@ -1,1 +1,23 @@
-<p>delivery-list works!</p>
+<div>
+  <h2 class="text-2xl font-semibold mb-4">Últimas 10 Viagens Calculadas</h2>
+  <div class="overflow-x-auto">
+    <table class="table-auto w-full border-collapse">
+      <thead>
+        <tr>
+          <th class="border p-2">Origem</th>
+          <th class="border p-2">Retirada</th>
+          <th class="border p-2">Destino</th>
+          <th class="border p-2">Tempo (segundos)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let trip of history">
+          <td class="border p-2">{{ trip.origin }}</td>
+          <td class="border p-2">{{ trip.pickup }}</td>
+          <td class="border p-2">{{ trip.destination }}</td>
+          <td class="border p-2">{{ trip.totalTime }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

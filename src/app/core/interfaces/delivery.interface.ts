@@ -4,7 +4,7 @@ export interface ITimeData {
   };
 }
 
-export interface Trip {
+export interface ITrip {
   origin: string;
   pickup: string;
   destination: string;
