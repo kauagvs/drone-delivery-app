@@ -47,5 +47,10 @@
         ]
       }
     }
-  ]
+  ],
+  "plugins": ["tailwindcss"],
+  "extends": ["plugin:tailwindcss/recommended"],
+  "rules": {
+    "tailwindcss/classnames-order": "error"
+  }
 }
