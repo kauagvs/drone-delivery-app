@@ -27,6 +27,10 @@ export class DeliveryFormComponent implements OnInit {
   }
 
   public calculateFastestPath() {
+    this.destination = this.destination.toUpperCase();
+    this.origin = this.origin.toUpperCase();
+    this.pickup = this.pickup.toUpperCase();
+
     if (!this.timeData || !this.origin || !this.pickup || !this.destination) {
       return;
     }
@@ -73,6 +77,8 @@ export class DeliveryFormComponent implements OnInit {
       this.destination,
       this.totalTime
     );
+
+    this._resetForm();
   }
 
   private _addToHistory(
@@ -91,5 +97,11 @@ export class DeliveryFormComponent implements OnInit {
     this.deliveryService.getTimeData().subscribe(data => {
       this.timeData = data;
     });
+  }
+
+  private _resetForm() {
+    this.destination = '';
+    this.origin = '';
+    this.pickup = '';
   }
 }
