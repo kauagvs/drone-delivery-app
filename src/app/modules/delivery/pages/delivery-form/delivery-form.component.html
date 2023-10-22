@@ -1,1 +1,72 @@
-<p>delivery-form works!</p>
+<div class="p-4">
+  <h2 class="text-2xl font-semibold mb-4">Informações de Entrega</h2>
+  <form
+    (ngSubmit)="calculateFastestPath()"
+    class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <div class="mb-4">
+      <label for="origin" class="block text-gray-700 text-sm font-bold mb-2"
+        >Origem (ex: A1):</label
+      >
+      <input
+        id="origin"
+        [(ngModel)]="origin"
+        name="origin"
+        required
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+    </div>
+
+    <div class="mb-4">
+      <label for="pickup" class="block text-gray-700 text-sm font-bold mb-2"
+        >Retirada (ex: B2):</label
+      >
+      <input
+        id="pickup"
+        [(ngModel)]="pickup"
+        name="pickup"
+        required
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+    </div>
+
+    <div class="mb-6">
+      <label
+        for="destination"
+        class="block text-gray-700 text-sm font-bold mb-2"
+        >Destino (ex: H8):</label
+      >
+      <input
+        id="destination"
+        [(ngModel)]="destination"
+        name="destination"
+        required
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+    </div>
+
+    <div class="flex items-center justify-between">
+      <button
+        type="submit"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+        Calcular Caminho
+      </button>
+    </div>
+  </form>
+
+  <div *ngIf="fastestPath">
+    <h3 class="text-2xl font-semibold mb-4">Caminho Mais Rápido:</h3>
+    <p>{{ fastestPath.join(' -> ') }}</p>
+    <p class="mt-4">Tempo Total: {{ totalTime }} segundos</p>
+  </div>
+
+  <div *ngIf="history.length">
+    <h2 class="text-2xl font-semibold mb-4 mt-4">
+      Últimas 10 Viagens Calculadas
+    </h2>
+    <ul>
+      <li *ngFor="let trip of history" class="mb-2">
+        {{ trip.origin }} -> {{ trip.pickup }} -> {{ trip.destination }} ({{
+          trip.totalTime
+        }}
+        segundos)
+      </li>
+    </ul>
+  </div>
+</div>

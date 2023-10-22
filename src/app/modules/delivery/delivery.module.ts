@@ -4,6 +4,7 @@ import { DeliveryFormComponent } from './pages/delivery-form/delivery-form.compo
 import { DeliveryDetailComponent } from './pages/delivery-detail/delivery-detail.component';
 import { DeliveryListComponent } from './pages/delivery-list/delivery-list.component';
 import { DeliveryRoutingModule } from './delivery-routing.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -11,6 +12,6 @@ import { DeliveryRoutingModule } from './delivery-routing.module';
     DeliveryDetailComponent,
     DeliveryListComponent,
   ],
-  imports: [CommonModule, DeliveryRoutingModule],
+  imports: [CommonModule, DeliveryRoutingModule, FormsModule],
 })
 export class DeliveryModule {}
