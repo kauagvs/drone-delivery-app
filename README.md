@@ -1,39 +1,70 @@
-# AngularTemplate
+# Drone Delivery System
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.3.
+![License](https://img.shields.io/badge/license-MIT-green)
 
-## Development server
+Um sistema de cálculo e rastreamento de entregas com drones. Este projeto foi desenvolvido para demonstrar boas práticas de desenvolvimento em Angular, TypeScript e Tailwind CSS.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Recursos
 
-## Code scaffolding
+- Cálculo do caminho mais rápido para entregas usando drones.
+- Rastreamento das últimas 10 entregas.
+- Interface de usuário amigável.
+- Design responsivo com o uso do Tailwind CSS.
+- Configuração de aliases para facilitar a importação de módulos.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Pré-requisitos
 
-## Build
+- Node.js e npm instalados.
+- Angular CLI instalado.
+- Um navegador da web moderno.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Instalação
 
-## Running unit tests
+1.  Clone este repositório:
 
-Run `npm test` to execute the unit tests via [Jest](https://jestjs.io/).
+    `git clone https://github.com/seu-usuario/drone-delivery.git`
 
-## Linting and Code Formatting
+2.  Acesse o diretório do projeto:
 
-This project uses ESLint and Prettier for code linting and formatting. You can run the following commands:
+    `cd drone-delivery`
 
-## Commit Linting
+3.  Instale as dependências:
 
-This project uses Commitlint to enforce a consistent commit message format. Make sure to follow the [conventional commits](https://www.conventionalcommits.org/) format when making commits. You can run the following command:
+    `npm install`
 
-## Pre-commit Hooks
+## Uso
 
-This project uses Husky to set up pre-commit hooks. Pre-commit hooks run linting and formatting checks before allowing you to commit your changes.
+1.  Inicie o servidor de desenvolvimento:
 
-## Lint-staged
+    `ng serve`
 
-This project uses lint-staged to run linters on pre-committed files. It helps ensure that only correctly formatted and linted code gets committed.
+2.  Acesse o sistema em seu navegador em [http://localhost:4200](http://localhost:4200/).
 
-## Further Help
+## Configuração
 
-To get more help on the Angular CLI, use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+O projeto utiliza aliases para simplificar as importações de módulos. Os aliases configurados podem ser encontrados no arquivo `tsconfig.json` e no webpack.
+
+## Contribuição
+
+Sinta-se à vontade para contribuir para o projeto. Você pode abrir issues, enviar pull requests e colaborar de diversas maneiras.
+
+## Licença
+
+Este projeto está licenciado sob a Licença MIT - consulte o arquivo [LICENSE](https://chat.openai.com/c/LICENSE) para obter detalhes.
+
+## Autores
+
+- [Kauã Semenov](https://github.com/kauagvs)
+
+## Contato
+
+Se você tiver alguma pergunta ou sugestão, sinta-se à vontade para nos contatar.
+
+## Versões
+
+- 1.0.0
+
+## Histórico de Atualizações
+
+- 1.0.0
+  - Versão inicial
