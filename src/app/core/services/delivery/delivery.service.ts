@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ITimeData } from '../../interfaces/delivery.interface';
+import { ITimeData } from '@core/interfaces/delivery.interface';
 
 @Injectable({
   providedIn: 'root',

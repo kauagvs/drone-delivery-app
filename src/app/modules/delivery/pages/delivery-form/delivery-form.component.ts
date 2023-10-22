@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { ITimeData, ITrip } from '@core/interfaces/delivery.interface';
 import { DeliveryHistoryService } from '@core/services/delivery-history/delivery-history.service';
 import { DeliveryService } from '@core/services/delivery/delivery.service';
@@ -20,8 +19,7 @@ export class DeliveryFormComponent implements OnInit {
 
   constructor(
     private deliveryService: DeliveryService,
-    private deliveryHistoryService: DeliveryHistoryService,
-    private router: Router
+    private deliveryHistoryService: DeliveryHistoryService
   ) {}
 
   ngOnInit(): void {
@@ -75,10 +73,6 @@ export class DeliveryFormComponent implements OnInit {
       this.destination,
       this.totalTime
     );
-  }
-
-  public navigateToDeliveryList() {
-    this.router.navigate(['delivery/delivery-list']);
   }
 
   private _addToHistory(
