@@ -35,8 +35,29 @@ export class DeliveryFormComponent implements OnInit {
       return;
     }
 
+    const fastestPathToPickup = this._findFastestPath(this.origin, this.pickup);
+    const fastestPathToDestination = this._findFastestPath(
+      this.pickup,
+      this.destination
+    );
+
+    if (fastestPathToPickup && fastestPathToDestination) {
+      this.fastestPath = [...fastestPathToPickup, ...fastestPathToDestination];
+      this.totalTime = this._calculateTotalTime(this.fastestPath);
+    }
+
+    this._addToHistory(
+      this.origin,
+      this.pickup,
+      this.destination,
+      this.totalTime
+    );
+    this._resetForm();
+  }
+
+  private _findFastestPath(start: string, end: string): string[] | null {
     const visited = new Set<string>();
-    const queue = [{ path: [this.origin], time: 0 }];
+    const queue = [{ path: [start], time: 0 }];
 
     let fastestTime = Infinity;
     let fastestPath: string[] = [];
@@ -47,7 +68,7 @@ export class DeliveryFormComponent implements OnInit {
       if (current) {
         const { path, time } = current;
 
-        if (path[path.length - 1] === this.destination) {
+        if (path[path.length - 1] === end) {
           if (time < fastestTime) {
             fastestTime = time;
             fastestPath = path;
@@ -57,7 +78,10 @@ export class DeliveryFormComponent implements OnInit {
         visited.add(path[path.length - 1]);
 
         for (const neighbor in this.timeData[path[path.length - 1]]) {
-          if (!visited.has(neighbor)) {
+          if (
+            !visited.has(neighbor) &&
+            this._isValidMove(path[path.length - 1], neighbor)
+          ) {
             const neighborTime = this.timeData[path[path.length - 1]][neighbor];
             queue.push({
               path: [...path, neighbor],
@@ -68,17 +92,35 @@ export class DeliveryFormComponent implements OnInit {
       }
     }
 
-    this.fastestPath = fastestPath;
-    this.totalTime = fastestTime;
+    return fastestPath.length > 0 ? fastestPath : null;
+  }
 
-    this._addToHistory(
-      this.origin,
-      this.pickup,
-      this.destination,
-      this.totalTime
-    );
+  private _calculateTotalTime(path: string[]): number {
+    let totalTime = 0;
+    for (let i = 1; i < path.length; i++) {
+      const coordA = path[i - 1];
+      const coordB = path[i];
+      if (
+        this.timeData[coordA] &&
+        this.timeData[coordA][coordB] !== undefined
+      ) {
+        totalTime += this.timeData[coordA][coordB];
+      }
+    }
+    return totalTime;
+  }
 
-    this._resetForm();
+  private _isValidMove(coordA: string, coordB: string): boolean {
+    const [letterA, numberA] = [coordA[0], parseInt(coordA.slice(1))];
+    const [letterB, numberB] = [coordB[0], parseInt(coordB.slice(1))];
+
+    const isVerticalMove =
+      letterA === letterB && Math.abs(numberA - numberB) === 1;
+    const isHorizontalMove =
+      numberA === numberB &&
+      Math.abs(letterA.charCodeAt(0) - letterB.charCodeAt(0)) === 1;
+
+    return isVerticalMove || isHorizontalMove;
   }
 
   private _addToHistory(
